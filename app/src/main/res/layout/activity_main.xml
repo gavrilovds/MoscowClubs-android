@@ -4,13 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.MainActivity"
+    android:background="@color/load_screen_color">
+
+    <ImageView
+        android:id="@+id/logo_icon_load_screen"
+        android:layout_width="312dp"
+        android:layout_height="559dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/logo_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/msk_clubs_load_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="568dp"
+        android:fontFamily="casual"
+        android:text="@string/msk_clubs"
+        android:textColor="@color/purple_200"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
