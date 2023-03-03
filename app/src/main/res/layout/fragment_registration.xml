@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ProfileFragment">
+    tools:context=".view.RegistrationFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,17 +15,17 @@
         <ImageView
             android:transitionName="cocktail_transition"
             android:id="@+id/cocktail_img"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/cocktail_login_screen" />
 
         <TextView
             android:transitionName="text_transition"
             android:id="@+id/welcome_text"
-            android:layout_width="wrap_content"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="@string/welcome_string"
+            android:text="@string/hello_string"
             android:textSize="40sp"
             android:textColor="@color/black"/>
         <TextView
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="@string/log_in_string"/>
+            android:text="@string/sing_in_string"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,6 +42,19 @@
             android:layout_marginBottom="20dp"
             android:orientation="vertical"
             >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_input"
+                app:counterMaxLength="15"
+                app:counterEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/name_string">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,10 +71,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/password_input"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="@string/password_string"
+                app:passwordToggleEnabled="true"
                 android:transitionName="password_transition"
-                app:passwordToggleEnabled="true">
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/password_string">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/confirm_password_input"
+                app:passwordToggleEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/confirm_password_string">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,32 +95,26 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <Button
-                android:layout_margin="5dp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/forget_pass_string"
-                android:layout_gravity="right"
-                android:textColor="@color/black"
-                android:background="#00000000"/>
-            <Button
-                android:id="@+id/log_in_button"
                 android:transitionName="reg_log_transition"
+                android:id="@+id/register_button"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enter_in_string"
+                android:text="@string/registration_string"
                 android:background="@color/black"
                 />
             <Button
                 android:transitionName="have_an_account_transition"
-                android:id="@+id/sign_in_button"
+                android:id="@+id/have_an_account_button"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:text="@string/already_have_an_account_string"
                 android:background="#00000000"
-                android:text="@string/no_account_string"
-                android:textColor="@color/black"/>
+                />
         </LinearLayout>
     </LinearLayout>
 
