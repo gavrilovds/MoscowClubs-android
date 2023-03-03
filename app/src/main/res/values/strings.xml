@@ -12,4 +12,10 @@
     <string name="forget_pass_string">Забыли пароль?</string>
     <string name="enter_in_string">Войти</string>
     <string name="no_account_string">Нет аккаунта? Зарегистрируйтесь!</string>
+    <string name="sing_in_string">Зарегистрируйтесь, чтобы продолжить</string>
+    <string name="confirm_password_string">Подтвердите пароль</string>
+    <string name="name_string">Имя</string>
+    <string name="registration_string">Зарегистрироваться</string>
+    <string name="hello_string">Привет!</string>
+    <string name="already_have_an_account_string">Уже есть аккаунт? Войдите</string>
 </resources>
