@@ -18,4 +18,12 @@
     <string name="registration_string">Зарегистрироваться</string>
     <string name="hello_string">Привет!</string>
     <string name="already_have_an_account_string">Уже есть аккаунт? Войдите</string>
+    <string name="address_text_string">Адрес</string>
+    <string name="closest_underground_string">Ближайшее метро</string>
+    <string name="site_string">Сайт</string>
+    <string name="phone_number_string">Телефон</string>
+    <string name="work_time_string">Время работы</string>
+    <string name="median_price_string">Средний чек</string>
+    <string name="people_amount_string">Вместимость</string>
+    <string name="add_your_comment_string">Добавь свой комментарий об этом месте</string>
 </resources>

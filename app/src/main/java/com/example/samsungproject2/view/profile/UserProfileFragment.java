@@ -1,4 +1,4 @@
-package com.example.samsungproject2.view;
+package com.example.samsungproject2.view.profile;
 
 import android.os.Bundle;
 

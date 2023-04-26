@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.clubs.clubinfo.ClubCommentsFragment">
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/add_your_comment_string"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content" />
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/comment_list_design"
+            android:id="@+id/comments_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+</ScrollView>

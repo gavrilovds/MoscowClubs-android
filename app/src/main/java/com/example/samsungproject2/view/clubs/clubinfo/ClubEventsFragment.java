@@ -1,4 +1,4 @@
-package com.example.samsungproject2.view;
+package com.example.samsungproject2.view.clubs.clubinfo;
 
 import android.os.Bundle;
 
@@ -9,16 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.samsungproject2.R;
-import com.example.samsungproject2.databinding.FragmentClubsBinding;
+import com.example.samsungproject2.databinding.FragmentClubEventsBinding;
 
 
-public class ClubsFragment extends Fragment {
+public class ClubEventsFragment extends Fragment {
 
-    private FragmentClubsBinding binding;
+    private FragmentClubEventsBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentClubsBinding.inflate(inflater, container, false);
+        binding = FragmentClubEventsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 }

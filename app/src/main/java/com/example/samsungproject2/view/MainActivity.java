@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.samsungproject2.R;
 import com.example.samsungproject2.databinding.ActivityMainBinding;
+import com.yandex.mapkit.MapKitFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MapKitFactory.setApiKey("e88559aa-a570-483e-84b4-72b7f74183ff");
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_anim);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
-        Log.d("help", binding.toString());
         image = binding.logoIconLoadScreen;
         text = binding.mskClubsLoadScreen;
         image.setAnimation(topAnim);
