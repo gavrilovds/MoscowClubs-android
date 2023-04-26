@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.clubs.ClubsFragment">
+    tools:context=".view.clubs.clubinfo.ClubPhotosFragment"
+    android:layout_marginTop="15dp"
+    android:background="#25DCDCDC">
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/clubs_recyclerview"
+        android:id="@+id/photos_recycler_view"
+        tools:listitem="@layout/photos_list_design"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/club_list_design" />
+        android:layout_height="wrap_content"/>
 
 
 </FrameLayout>

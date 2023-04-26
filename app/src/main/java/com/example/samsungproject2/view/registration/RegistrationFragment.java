@@ -1,9 +1,11 @@
-package com.example.samsungproject2.view;
+package com.example.samsungproject2.view.registration;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentNavigator;
 import androidx.transition.Transition;
 import androidx.transition.TransitionInflater;
 
@@ -50,22 +52,24 @@ public class RegistrationFragment extends Fragment {
         registerButton = binding.registerButton;
         cocktailImg = binding.cocktailImg;
 
+        FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+                .addSharedElement(alrdHaveAnAcc, "have_an_account_transition")
+                .addSharedElement(text1, "text_transition")
+                .addSharedElement(text2, "text2_transition")
+                .addSharedElement(emailInput, "email_transition")
+                .addSharedElement(passwordInput, "password_transition")
+                .addSharedElement(registerButton,"reg_log_transition")
+                .addSharedElement(cocktailImg, "cocktail_transition")
+                .build();
+
         alrdHaveAnAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .addSharedElement(alrdHaveAnAcc, "have_an_account_transition")
-                        .addSharedElement(text1, "text_transition")
-                        .addSharedElement(text2, "text2_transition")
-                        .addSharedElement(emailInput, "email_transition")
-                        .addSharedElement(passwordInput, "password_transition")
-                        .addSharedElement(registerButton,"reg_log_transition")
-                        .addSharedElement(cocktailImg, "cocktail_transition")
-                        .replace(R.id.body_container, new ProfileFragment())
-                        .addToBackStack("from_reg_fragment")
-                        .commit();
+                Navigation.findNavController(v).navigate(
+                        R.id.action_registrationFragment_to_profileFragment,
+                        null,
+                        null,
+                        extras);
             }
         });
 

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
-    android:background="@color/load_screen_color">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/logo_icon_load_screen"
         android:layout_width="312dp"
         android:layout_height="559dp"
         android:layout_marginTop="84dp"
-        android:src="@drawable/logo_icon"
+        android:src="@drawable/cocktail_login_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="568dp"
-        android:fontFamily="casual"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/msk_clubs"
-        android:textColor="@color/purple_200"
-        android:textSize="36sp"
+        android:textColor="@color/black"
+        android:textSize="44sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

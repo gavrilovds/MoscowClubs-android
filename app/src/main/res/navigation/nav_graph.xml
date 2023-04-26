@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bottom_nav_map">
+
+    <fragment
+        android:id="@+id/bottom_nav_clubs"
+        android:name="com.example.samsungproject2.view.clubs.ClubsFragment"
+        android:label="fragment_clubs"
+        tools:layout="@layout/fragment_clubs" >
+        <action
+            android:id="@+id/action_clubsFragment_to_mapFragment"
+            app:destination="@id/bottom_nav_map"
+            app:popUpTo="@+id/bottom_nav_map"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_bottom_nav_clubs_to_clubInfoFragment"
+            app:destination="@id/clubInfoFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottom_nav_map"
+        android:name="com.example.samsungproject2.view.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_profileFragment"
+            app:destination="@id/bottom_nav_profile"
+            app:popUpTo="@+id/bottom_nav_profile"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mapFragment_to_clubsFragment"
+            app:destination="@id/bottom_nav_clubs"
+            app:popUpTo="@+id/bottom_nav_clubs"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_bottom_nav_map_to_clubInfoFragment"
+            app:destination="@id/clubInfoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/clubInfoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottom_nav_profile"
+        android:name="com.example.samsungproject2.view.registration.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            app:popUpTo="@+id/registrationFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_profileFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            app:popUpTo="@+id/bottom_nav_map"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_profileFragment_to_mapFragment"
+            app:destination="@id/bottom_nav_map" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.samsungproject2.view.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            app:popUpTo="@+id/bottom_nav_profile"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_registrationFragment_to_profileFragment"
+            app:destination="@id/bottom_nav_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/clubInfoFragment"
+        android:name="com.example.samsungproject2.view.clubs.clubinfo.ClubInfoFragment"
+        android:label="fragment_club_info"
+        tools:layout="@layout/fragment_club_info" >
+        <action
+            app:popUpTo="@id/bottom_nav_clubs"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_clubInfoFragment_to_bottom_nav_clubs"
+            app:destination="@id/bottom_nav_clubs"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_clubInfoFragment_to_bottom_nav_map"
+            app:destination="@id/bottom_nav_map"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/bottom_nav_map"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

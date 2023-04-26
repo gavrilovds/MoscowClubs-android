@@ -10,4 +10,5 @@
     <color name="load_screen_color">#10121B</color>
     <color name="nav_bar_color">#02111B</color>
     <color name="light_white">#D2D2D2</color>
+    <color name="cardview_background">#AF8484</color>
 </resources>
