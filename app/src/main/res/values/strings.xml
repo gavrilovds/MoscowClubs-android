@@ -25,5 +25,9 @@
     <string name="work_time_string">Время работы</string>
     <string name="median_price_string">Средний чек</string>
     <string name="people_amount_string">Вместимость</string>
-    <string name="add_your_comment_string">Добавь свой комментарий об этом месте</string>
+    <string name="add_your_comment_string">Зарегистрируйся и добавь свой комментарий об этом месте</string>
+    <string name="exit_text">Выйти</string>
+    <string name="my_comments_text">Мои комментарии</string>
+    <string name="favourite_clubs_text">Избранные клубы</string>
+    <string name="add_your_comment_text">Оставь свой комментарий</string>
 </resources>

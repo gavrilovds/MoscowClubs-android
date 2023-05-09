@@ -6,24 +6,46 @@
     tools:context=".view.clubs.clubinfo.ClubCommentsFragment">
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="@string/add_your_comment_string"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/add_comment_text"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="@string/add_your_comment_string"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <ImageView
+                android:clickable="true"
+                android:visibility="invisible"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center"
+                android:id="@+id/add_comment_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_comment_drawable"/>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/comment_list_design"
             android:id="@+id/comments_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/comment_list_design" />
     </LinearLayout>
 
 

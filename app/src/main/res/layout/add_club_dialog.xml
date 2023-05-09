@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/club_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите название клуба" />
+
+            <EditText
+                android:id="@+id/club_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите описание клуба" />
+
+            <EditText
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите широту, на которой расположен клуб" />
+
+            <EditText
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите долготу, на которой расположен клуб" />
+
+            <EditText
+                android:id="@+id/club_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите адрес клуба" />
+
+            <EditText
+                android:id="@+id/closest_underground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите ближайшее метро" />
+
+            <EditText
+                android:id="@+id/work_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите время работы в формате 'пн-пт : 22:00-05:00'" />
+
+            <EditText
+                android:id="@+id/people_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите вместимость клуба" />
+
+            <EditText
+                android:id="@+id/median_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите среднюю цену чека" />
+
+            <EditText
+                android:id="@+id/web_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Укажите ссылку на официальный сайт" />
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Введите номер телефона" />
+            <EditText
+                android:id="@+id/club_preview_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Укажите ссылку на фото клуба (если возможно)"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_club_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Добавить клуб" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

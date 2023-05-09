@@ -3,12 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.clubs.clubinfo.ClubEventsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/event_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="EVENTS" />
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/events_list_design" />
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="90dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:id="@+id/add_new_event"
+        android:layout_gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/add_comment_drawable" />
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

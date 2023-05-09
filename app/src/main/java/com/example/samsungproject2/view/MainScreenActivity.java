@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +26,6 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainScreenActivity extends AppCompatActivity {
 
     private ActivityMainScreenBinding binding;
-    private BottomNavigationView bottomNavigationView;
     private NavController navController;
     private NavHostFragment navHostFragment;
 
@@ -35,20 +35,22 @@ public class MainScreenActivity extends AppCompatActivity {
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
-        bottomNavigationView = binding.bottomNavBar;
-
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        NavigationUI.setupWithNavController(binding.bottomNavBar, navController);
+        binding.bottomNavBar.setVisibility(View.VISIBLE);
+
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                switch (navDestination.getId()){
+                switch (navDestination.getId()) {
                     case R.id.clubInfoFragment:
-                        bottomNavigationView.setVisibility(View.GONE);
+                    case R.id.profileSettingsFragment:
+                        binding.bottomNavBar.setVisibility(View.GONE);
                         break;
                     default:
-                        bottomNavigationView.setVisibility(View.VISIBLE);
+                        binding.bottomNavBar.setVisibility(View.VISIBLE);
                         break;
                 }
             }

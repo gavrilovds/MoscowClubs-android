@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.clubs.ClubsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.clubs.ClubsFragment"
+    android:orientation="vertical">
 
+    <androidx.appcompat.widget.SearchView
+        app:iconifiedByDefault="false"
+        android:background="@drawable/search_view_drawable"
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:queryHint="Найди клуб по названию"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clubs_recyclerview"
         android:layout_width="match_parent"
@@ -12,4 +22,4 @@
         tools:listitem="@layout/club_list_design" />
 
 
-</FrameLayout>
+</LinearLayout>

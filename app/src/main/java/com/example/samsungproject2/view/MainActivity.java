@@ -3,12 +3,14 @@ package com.example.samsungproject2.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SharedPreferences sharedPreferences = getSharedPreferences("MoscowClubs", MODE_PRIVATE);
+        //sharedPreferences.edit().clear().apply();
         MapKitFactory.setApiKey("e88559aa-a570-483e-84b4-72b7f74183ff");
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());

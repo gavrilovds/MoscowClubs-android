@@ -2,6 +2,7 @@ package com.example.samsungproject2.view.clubs;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,15 +32,33 @@ public class ClubsFragment extends Fragment implements ClubsAdapter.OnClubListen
                              Bundle savedInstanceState) {
         binding = FragmentClubsBinding.inflate(inflater, container, false);
         clubsViewModel = new ViewModelProvider(requireActivity()).get(ClubsViewModel.class);
+        binding.searchView.clearFocus();
+
+
         clubsViewModel.getClubListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Club>>() {
             @Override
             public void onChanged(List<Club> clubs) {
+                ClubsAdapter clubsAdapter = new ClubsAdapter(clubs, ClubsFragment.this);
                 binding.clubsRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-                binding.clubsRecyclerview.setAdapter(new ClubsAdapter(clubs, ClubsFragment.this));
+                binding.clubsRecyclerview.setAdapter(clubsAdapter);
+                binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        clubsAdapter.getFilter().filter(query);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        clubsAdapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
             }
         });
         return binding.getRoot();
     }
+
     @Override
     public void onClubClick(String clubName) {
         Bundle bundle = new Bundle();

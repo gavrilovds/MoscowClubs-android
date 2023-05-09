@@ -10,8 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samsungproject2.R;
@@ -26,20 +31,20 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubViewHolder> {
+public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubViewHolder> implements Filterable {
 
-    private List<Club> data;
-    private OnClubListener onClubListener;
+    private final List<Club> data;
+    private List<Club> filteredData;
+    private final OnClubListener onClubListener;
 
     public ClubsAdapter(List<Club> data, OnClubListener onClubListener) {
         this.data = data;
+        this.filteredData = data;
         this.onClubListener = onClubListener;
     }
 
-    public void updateData(List<Club> newData) {
-        data = newData;
-    }
 
     @NonNull
     @Override
@@ -50,14 +55,18 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ClubsAdapter.ClubViewHolder holder, int position) {
-        holder.binding.clubName.setText(data.get(position).getName());
-        holder.binding.clubDescription.setText(data.get(position).getDescription());
-        Picasso.get().load(data.get(position).getImages().get(0).getUrl()).into(holder.binding.clubPreviewImg);
+        holder.binding.clubName.setText(filteredData.get(position).getName());
+        holder.binding.clubDescription.setText(filteredData.get(position).getDescription());
+        if (filteredData.get(position).getImages().get(0) != null)
+            Picasso.get().load(filteredData.get(position).getImages().get(0).getUrl()).into(holder.binding.clubPreviewImg);
+        else
+            Picasso.get().load(R.drawable.cocktail_login_screen).into(holder.binding.clubPreviewImg);
+        holder.binding.clubsItem.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.club_list_anim));
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return filteredData.size();
     }
 
     class ClubViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -81,5 +90,32 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubViewHold
         void onClubClick(String clubName);
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if (charString.isEmpty())
+                    filteredData = data;
+                else {
+                    List<Club> filteredList = new ArrayList<>();
+                    for (Club club : data) {
+                        if (club.getName().toLowerCase(Locale.ROOT).contains(charString.toLowerCase(Locale.ROOT)))
+                            filteredList.add(club);
+                    }
+                    filteredData = filteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredData;
+                return filterResults;
+            }
 
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredData = (List<Club>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 }

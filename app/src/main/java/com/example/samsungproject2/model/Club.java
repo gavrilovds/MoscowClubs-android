@@ -33,6 +33,7 @@ public class Club {
     private String webSite;
     @SerializedName("phoneNumber")
     private String phoneNumber;
+    private List<Event> events;
 
     public Club() {
     }
@@ -140,5 +141,13 @@ public class Club {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

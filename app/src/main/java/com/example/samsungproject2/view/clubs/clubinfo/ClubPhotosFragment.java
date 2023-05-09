@@ -1,6 +1,9 @@
 package com.example.samsungproject2.view.clubs.clubinfo;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,9 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.samsungproject2.R;
 import com.example.samsungproject2.adapters.PhotosAdapter;
+import com.example.samsungproject2.databinding.AddClubDialogBinding;
+import com.example.samsungproject2.databinding.AddClubImageDialogBinding;
 import com.example.samsungproject2.databinding.FragmentClubPhotosBinding;
 import com.example.samsungproject2.model.Club;
 import com.example.samsungproject2.viewmodel.clubs.ClubInfoViewModel;
@@ -25,17 +31,46 @@ public class ClubPhotosFragment extends Fragment implements PhotosAdapter.OnPhot
 
     private FragmentClubPhotosBinding binding;
     private ClubInfoViewModel viewModel;
+    private Dialog addClubImageDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentClubPhotosBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(ClubInfoViewModel.class);
+        addClubImageDialog = new Dialog(getContext());
         viewModel.getClubMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Club>() {
             @Override
             public void onChanged(Club club) {
                 binding.photosRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
                 binding.photosRecyclerView.setAdapter(new PhotosAdapter(club.getImages(), ClubPhotosFragment.this));
+            }
+        });
+        if (viewModel.getUserMutableLiveData().getValue().isAdmin() && viewModel.getUserMutableLiveData().getValue().getAdminClubName()
+                .equals(viewModel.getClubMutableLiveData().getValue().getName())){
+            binding.addNewImage.setVisibility(View.VISIBLE);
+        }
+        binding.addNewImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddClubImageDialogBinding binding = AddClubImageDialogBinding.inflate(getLayoutInflater());
+                addClubImageDialog.setContentView(binding.getRoot());
+                addClubImageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                addClubImageDialog.show();
+                binding.addImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = binding.imageUrl.getText().toString();
+                        if (url.equals(""))
+                            Toast.makeText(getContext(), "Введите ссылку", Toast.LENGTH_SHORT).show();
+                        else{
+                            viewModel.addClubImage(viewModel.getClubMutableLiveData().getValue().getName(),
+                                    url);
+                            Toast.makeText(getContext(), "Фото добавлено", Toast.LENGTH_LONG);
+                            addClubImageDialog.cancel();
+                        }
+                    }
+                });
             }
         });
         return binding.getRoot();

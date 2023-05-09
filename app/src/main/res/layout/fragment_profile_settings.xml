@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.profile.ProfileSettingsFragment">
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_back_arrow"
+        android:clickable="true" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_name"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#989191"
+        android:text="Изменить имя"
+        android:textColor="@color/black" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_password"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#989191"
+        android:text="Изменить пароль"
+        android:textColor="@color/black" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_club"
+        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#989191"
+        android:text="Добавить клуб"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>

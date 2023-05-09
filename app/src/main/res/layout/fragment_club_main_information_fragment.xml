@@ -46,7 +46,7 @@
             android:layout_marginTop="30dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="190dp"
+                android:layout_width="185dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="15dp">
 
@@ -69,17 +69,19 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="https:://bargipsy.com"
-                        android:textColor="#3F51B5"
-                        android:textIsSelectable="true" />
+                        android:textColor="#3F51B5" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <androidx.cardview.widget.CardView
-                android:layout_width="190dp"
+                android:layout_width="185dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
@@ -101,8 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="+7-963-650-76-15"
-                        android:textColor="#3F51B5"
-                        android:textIsSelectable="true" />
+                        android:textColor="#3F51B5" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -120,12 +121,15 @@
                 android:text="@string/work_time_string"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/work_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
+                android:layout_marginRight="10dp"
                 android:text="пн-пт: 23:00 - 06:00" />
         </LinearLayout>
 
@@ -141,12 +145,15 @@
                 android:text="@string/median_price_string"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/median_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="225dp"
+                android:layout_marginRight="10dp"
                 android:text="1500" />
         </LinearLayout>
 
@@ -162,12 +169,15 @@
                 android:text="@string/people_amount_string"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/people_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="215dp"
+                android:layout_marginRight="10dp"
                 android:text="1200" />
         </LinearLayout>
 

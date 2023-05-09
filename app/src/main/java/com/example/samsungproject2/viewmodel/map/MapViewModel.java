@@ -34,7 +34,7 @@ public class MapViewModel extends ViewModel {
     }
 
     private void init() {
-        server = "http://158.160.29.103:8080";
+        server = "http://10.0.2.2:8080";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(server)
                 .addConverterFactory(GsonConverterFactory.create())
