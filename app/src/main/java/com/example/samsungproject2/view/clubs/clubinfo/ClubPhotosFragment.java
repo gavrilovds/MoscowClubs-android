@@ -2,6 +2,8 @@ package com.example.samsungproject2.view.clubs.clubinfo;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public class ClubPhotosFragment extends Fragment implements PhotosAdapter.OnPhot
     private FragmentClubPhotosBinding binding;
     private ClubInfoViewModel viewModel;
     private Dialog addClubImageDialog;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +42,8 @@ public class ClubPhotosFragment extends Fragment implements PhotosAdapter.OnPhot
         binding = FragmentClubPhotosBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(ClubInfoViewModel.class);
         addClubImageDialog = new Dialog(getContext());
+        sharedPreferences = getActivity().getSharedPreferences("MoscowClubs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("USER_TOKEN", null);
         viewModel.getClubMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Club>() {
             @Override
             public void onChanged(Club club) {
@@ -46,33 +51,35 @@ public class ClubPhotosFragment extends Fragment implements PhotosAdapter.OnPhot
                 binding.photosRecyclerView.setAdapter(new PhotosAdapter(club.getImages(), ClubPhotosFragment.this));
             }
         });
-        if (viewModel.getUserMutableLiveData().getValue().isAdmin() && viewModel.getUserMutableLiveData().getValue().getAdminClubName()
-                .equals(viewModel.getClubMutableLiveData().getValue().getName())){
-            binding.addNewImage.setVisibility(View.VISIBLE);
-        }
-        binding.addNewImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddClubImageDialogBinding binding = AddClubImageDialogBinding.inflate(getLayoutInflater());
-                addClubImageDialog.setContentView(binding.getRoot());
-                addClubImageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                addClubImageDialog.show();
-                binding.addImageButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String url = binding.imageUrl.getText().toString();
-                        if (url.equals(""))
-                            Toast.makeText(getContext(), "Введите ссылку", Toast.LENGTH_SHORT).show();
-                        else{
-                            viewModel.addClubImage(viewModel.getClubMutableLiveData().getValue().getName(),
-                                    url);
-                            Toast.makeText(getContext(), "Фото добавлено", Toast.LENGTH_LONG);
-                            addClubImageDialog.cancel();
-                        }
-                    }
-                });
+        if (token != null) {
+            if (viewModel.getUserMutableLiveData().getValue().isAdmin() && viewModel.getUserMutableLiveData().getValue().getAdminClubName()
+                    .equals(viewModel.getClubMutableLiveData().getValue().getName())) {
+                binding.addNewImage.setVisibility(View.VISIBLE);
             }
-        });
+            binding.addNewImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AddClubImageDialogBinding binding = AddClubImageDialogBinding.inflate(getLayoutInflater());
+                    addClubImageDialog.setContentView(binding.getRoot());
+                    addClubImageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    addClubImageDialog.show();
+                    binding.addImageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url = binding.imageUrl.getText().toString();
+                            if (url.equals(""))
+                                Toast.makeText(getContext(), "Введите ссылку", Toast.LENGTH_SHORT).show();
+                            else {
+                                viewModel.addClubImage(viewModel.getClubMutableLiveData().getValue().getName(),
+                                        url);
+                                Toast.makeText(getContext(), "Фото добавлено", Toast.LENGTH_LONG);
+                                addClubImageDialog.cancel();
+                            }
+                        }
+                    });
+                }
+            });
+        }
         return binding.getRoot();
     }
 

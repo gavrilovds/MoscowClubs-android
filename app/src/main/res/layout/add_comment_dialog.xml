@@ -8,6 +8,7 @@
     android:background="@drawable/round_corner">
 
     <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/comment_card">

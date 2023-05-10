@@ -77,7 +77,10 @@ public class ClubInfoFragment extends Fragment {
             @Override
             public void onChanged(Club club) {
                 binding.clubName.setText(club.getName());
-                Picasso.get().load(club.getImages().get(0).getUrl()).into(binding.clubPreviewImg);
+                if (!club.getImages().isEmpty())
+                    Picasso.get().load(club.getImages().get(0).getUrl()).into(binding.clubPreviewImg);
+                else
+                    Picasso.get().load(R.drawable.empty_image).into(binding.clubPreviewImg);
             }
         });
         binding.backButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,9 @@ public class ClubInfoFragment extends Fragment {
                 else if (getArguments().getString(FROM).equals("user_profile_fragment"))
                     Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
                             .navigate(R.id.action_clubInfoFragment_to_bottom_nav_user_profile);
+                else if (getArguments().getString(FROM).equals("profile_settings_fragment"))
+                    Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
+                            .navigate(R.id.action_clubInfoFragment_to_profileSettingsFragment);
                 else
                     Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
                             .navigate(R.id.action_clubInfoFragment_to_bottom_nav_clubs);

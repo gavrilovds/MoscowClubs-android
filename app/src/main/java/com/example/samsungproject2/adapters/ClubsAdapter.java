@@ -57,10 +57,10 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubViewHold
     public void onBindViewHolder(@NonNull ClubsAdapter.ClubViewHolder holder, int position) {
         holder.binding.clubName.setText(filteredData.get(position).getName());
         holder.binding.clubDescription.setText(filteredData.get(position).getDescription());
-        if (filteredData.get(position).getImages().get(0) != null)
+        if (!filteredData.get(position).getImages().isEmpty())
             Picasso.get().load(filteredData.get(position).getImages().get(0).getUrl()).into(holder.binding.clubPreviewImg);
         else
-            Picasso.get().load(R.drawable.cocktail_login_screen).into(holder.binding.clubPreviewImg);
+            Picasso.get().load(R.drawable.empty_image).into(holder.binding.clubPreviewImg);
         holder.binding.clubsItem.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.club_list_anim));
     }
 

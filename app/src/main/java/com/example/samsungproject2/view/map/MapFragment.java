@@ -47,28 +47,42 @@ public class MapFragment extends Fragment {
         mapViewModel.getMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Club>>() {
             @Override
             public void onChanged(List<Club> clubs) {
-                mapview.getMap().move(
-                        new CameraPosition(new Point(55.7522, 37.6156), 12.0f, 0.0f, 0.0f),
-                        new Animation(Animation.Type.LINEAR, 0),
-                        null);
                 for (Club club : clubs) {
                     mapview.getMap().getMapObjects().addPlacemark(new Point(club.getLatitude(), club.getLongitude()),
-                            ImageProvider.fromResource(getContext(), R.drawable.club_location))
+                                    ImageProvider.fromResource(getContext(), R.drawable.club_location))
                             .addTapListener(new MapObjectTapListener() {
-                        @Override
-                        public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
-                            Log.d("help", "onMapObjectTap: ");
-                            Bundle bundle = new Bundle();
-                            bundle.putString("CLUB_NAME", club.getName());
-                            bundle.putString("FROM", "map_fragment");
-                            Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
-                                    .navigate(R.id.action_bottom_nav_map_to_clubInfoFragment, bundle);
-                            return false;
-                        }
-                    });
+                                @Override
+                                public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
+                                    Log.d("help", "onMapObjectTap: ");
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("CLUB_NAME", club.getName());
+                                    bundle.putString("FROM", "map_fragment");
+                                    Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
+                                            .navigate(R.id.action_bottom_nav_map_to_clubInfoFragment, bundle);
+                                    return false;
+                                }
+                            });
                 }
             }
         });
+        if (getArguments() != null && getArguments().getString("FROM") != null) {
+            if (getArguments().getString("FROM").equals("club_info_fragment")) {
+                double latitude = getArguments().getDouble("LATITUDE");
+                double longitude = getArguments().getDouble("LONGITUDE");
+                Log.d("help", String.valueOf(latitude) + " " + String.valueOf(longitude));
+                mapview.getMap().move(
+                        new CameraPosition(new Point(latitude, longitude), 14.0f, 0.0f, 0.0f),
+                        new Animation(Animation.Type.LINEAR, 0.5f),
+                        null);
+            }
+            getArguments().clear();
+        } else {
+            mapview.getMap().move(
+                    new CameraPosition(new Point(55.7522, 37.6156), 12.0f, 0.0f, 0.0f),
+                    new Animation(Animation.Type.LINEAR, 0.1f),
+                    null);
+        }
+
         return binding.getRoot();
     }
 

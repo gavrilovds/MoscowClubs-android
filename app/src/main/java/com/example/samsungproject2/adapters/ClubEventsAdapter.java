@@ -3,10 +3,12 @@ package com.example.samsungproject2.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.samsungproject2.R;
 import com.example.samsungproject2.databinding.EventsListDesignBinding;
 import com.example.samsungproject2.model.Event;
 import com.example.samsungproject2.utils.MonthUtils;
@@ -36,12 +38,16 @@ public class ClubEventsAdapter extends RecyclerView.Adapter<ClubEventsAdapter.Cl
 
     @Override
     public void onBindViewHolder(@NonNull ClubEventsViewHolder holder, int position) {
-        Picasso.get().load(data.get(position).getImageUrl()).into(holder.binding.eventImage);
+        if (!data.get(position).getImageUrl().equals(""))
+            Picasso.get().load(data.get(position).getImageUrl()).into(holder.binding.eventImage);
+        else
+            Picasso.get().load(R.drawable.empty_image).into(holder.binding.eventImage);
         holder.binding.eventName.setText(data.get(position).getEventName());
         String[] dates = dateHelper(data.get(position).getDate());
         holder.binding.day.setText(dates[0]);
         holder.binding.month.setText(dates[1]);
         holder.binding.time.setText(dates[2]);
+        holder.binding.eventsListItem.startAnimation(AnimationUtils.loadAnimation(holder.binding.day.getContext(), R.anim.club_comments_anim));
     }
 
     @Override

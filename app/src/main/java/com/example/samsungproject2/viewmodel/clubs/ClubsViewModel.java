@@ -40,12 +40,10 @@ public class ClubsViewModel extends ViewModel {
 
     public ClubsViewModel(){
         init();
-        getAllClubs();
-        Log.d("help", "ClubsViewModel: ");
     }
 
     private void init() {
-        server = "http://10.0.2.2:8080";
+        server = "http://158.160.29.103:8080";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(server)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -69,7 +67,7 @@ public class ClubsViewModel extends ViewModel {
         });
     }
 
-    private void getAllClubs() {
+    public void getAllClubs() {
         Call<JsonArray> getAllClubsCall = clubAPI.getAllClubs();
         getAllClubsCall.enqueue(new Callback<JsonArray>() {
             @Override

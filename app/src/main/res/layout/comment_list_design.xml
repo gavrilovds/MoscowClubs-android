@@ -10,10 +10,12 @@
         android:layout_height="15dp" />
 
     <LinearLayout
-        android:layout_width="411dp"
+        android:id="@+id/comment_item"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
         android:minHeight="100dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_corner_clubs"
+        android:background="@drawable/comments_border"
         android:orientation="vertical">
 
         <TextView
@@ -26,10 +28,9 @@
             android:text="UserName" />
 
         <View
-            android:layout_marginLeft="5dp"
-            android:layout_width="404dp"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#4297BD"/>
+            android:background="@color/black"/>
 
         <TextView
             android:layout_marginTop="10dp"

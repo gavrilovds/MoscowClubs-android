@@ -10,11 +10,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.samsungproject2.R;
 import com.example.samsungproject2.databinding.FragmentClubMainInformationFragmentBinding;
 import com.example.samsungproject2.model.Club;
 import com.example.samsungproject2.viewmodel.clubs.ClubInfoViewModel;
@@ -64,6 +66,18 @@ public class ClubMainInformationFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:" + binding.phoneNumber.getText().toString()));
                 startActivity(intent);
+            }
+        });
+
+        binding.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putDouble("LATITUDE", clubInfoViewModel.getClubMutableLiveData().getValue().getLatitude());
+                args.putDouble("LONGITUDE", clubInfoViewModel.getClubMutableLiveData().getValue().getLongitude());
+                args.putString("FROM", "club_info_fragment");
+                Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
+                        .navigate(R.id.action_clubInfoFragment_to_bottom_nav_map, args);
             }
         });
 

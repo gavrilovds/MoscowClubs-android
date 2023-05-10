@@ -73,7 +73,11 @@ public class UserProfileFragment extends Fragment implements FavouriteClubsAdapt
             public void onClick(View v) {
                 binding.favouriteClubsButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.button_press_anim));
                 binding.myCommentsRecyclerView.setVisibility(View.GONE);
-                binding.favouriteClubsRecyclerView.setVisibility(View.VISIBLE);
+                binding.noComments.setVisibility(View.GONE);
+                if (viewModel.getMutableLiveData().getValue().getFavouriteClubs().isEmpty())
+                    binding.noFavouriteClubs.setVisibility(View.VISIBLE);
+                else
+                    binding.favouriteClubsRecyclerView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -82,7 +86,11 @@ public class UserProfileFragment extends Fragment implements FavouriteClubsAdapt
             public void onClick(View v) {
                 binding.myCommentsButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.button_press_anim));
                 binding.favouriteClubsRecyclerView.setVisibility(View.GONE);
-                binding.myCommentsRecyclerView.setVisibility(View.VISIBLE);
+                binding.noFavouriteClubs.setVisibility(View.GONE);
+                if (viewModel.getMutableLiveData().getValue().getComments().isEmpty())
+                    binding.noComments.setVisibility(View.VISIBLE);
+                else
+                    binding.myCommentsRecyclerView.setVisibility(View.VISIBLE);
             }
         });
 

@@ -41,7 +41,7 @@ public class ClubCommentsFragment extends Fragment {
         preferences = getActivity().getSharedPreferences("MoscowClubs", Context.MODE_PRIVATE);
         String token = preferences.getString("USER_TOKEN", null);
         addCommentDialog = new Dialog(getContext());
-        if (token != null){
+        if (token != null) {
             binding.addCommentButton.setVisibility(View.VISIBLE);
             binding.addCommentText.setText("Добавьте свой комментарий об этом месте");
         }
@@ -53,26 +53,28 @@ public class ClubCommentsFragment extends Fragment {
                 binding.commentsRecyclerview.setAdapter(new CommentsAdapter(club.getComments()));
             }
         });
-        binding.addCommentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText commentEditText;
-                MaterialButton addComment;
-                addCommentDialog.setContentView(R.layout.add_comment_dialog);
-                addCommentDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                addComment = addCommentDialog.findViewById(R.id.add_comment);
-                commentEditText = addCommentDialog.findViewById(R.id.comment_text);
-                addComment.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        clubInfoViewModel.addComment(commentEditText.getText().toString(), token,
-                                clubInfoViewModel.getClubMutableLiveData().getValue().getName());
-                        addCommentDialog.cancel();
-                    }
-                });
-                addCommentDialog.show();
-            }
-        });
+        if (token != null) {
+            binding.addCommentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText commentEditText;
+                    MaterialButton addComment;
+                    addCommentDialog.setContentView(R.layout.add_comment_dialog);
+                    addCommentDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    addComment = addCommentDialog.findViewById(R.id.add_comment);
+                    commentEditText = addCommentDialog.findViewById(R.id.comment_text);
+                    addComment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            clubInfoViewModel.addComment(commentEditText.getText().toString(), token,
+                                    clubInfoViewModel.getClubMutableLiveData().getValue().getName());
+                            addCommentDialog.cancel();
+                        }
+                    });
+                    addCommentDialog.show();
+                }
+            });
+        }
         return binding.getRoot();
     }
 }

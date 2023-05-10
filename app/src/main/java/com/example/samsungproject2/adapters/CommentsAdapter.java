@@ -3,10 +3,13 @@ package com.example.samsungproject2.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.samsungproject2.R;
 import com.example.samsungproject2.databinding.ClubListDesignBinding;
 import com.example.samsungproject2.databinding.CommentListDesignBinding;
 import com.example.samsungproject2.model.Comment;
@@ -32,6 +35,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         holder.binding.commentText.setText(data.get(position).getText());
         holder.binding.username.setText(data.get(position).getOwner());
+        holder.binding.commentItem.startAnimation(AnimationUtils.loadAnimation(holder.binding.commentText.getContext(), R.anim.club_comments_anim));
     }
 
     @Override

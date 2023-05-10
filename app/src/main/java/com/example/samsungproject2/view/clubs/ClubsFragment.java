@@ -33,7 +33,7 @@ public class ClubsFragment extends Fragment implements ClubsAdapter.OnClubListen
         binding = FragmentClubsBinding.inflate(inflater, container, false);
         clubsViewModel = new ViewModelProvider(requireActivity()).get(ClubsViewModel.class);
         binding.searchView.clearFocus();
-
+        clubsViewModel.getAllClubs();
 
         clubsViewModel.getClubListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Club>>() {
             @Override

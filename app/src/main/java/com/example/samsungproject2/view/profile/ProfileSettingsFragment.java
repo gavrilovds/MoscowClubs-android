@@ -60,8 +60,13 @@ public class ProfileSettingsFragment extends Fragment {
             viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), new Observer<User>() {
                 @Override
                 public void onChanged(User user) {
-                    if (user.isAdmin() && user.getAdminClubName().equals(""))
+                    if (user.isAdmin() && user.getAdminClubName().equals("")) {
                         binding.addClub.setVisibility(View.VISIBLE);
+                        binding.role.setVisibility(View.VISIBLE);
+                    } else if (user.isAdmin() && !user.getAdminClubName().equals("")) {
+                        binding.adminClubButton.setVisibility(View.VISIBLE);
+                        binding.role.setVisibility(View.VISIBLE);
+                    }
                 }
             });
         }
@@ -98,13 +103,24 @@ public class ProfileSettingsFragment extends Fragment {
                         String newName = binding.newName.getText().toString();
                         if (newName.length() < 3)
                             Toast.makeText(getContext(), "Имя слишком короткое", Toast.LENGTH_LONG).show();
-                        else{
+                        else {
                             viewModel.changeName(token, newName);
                             Toast.makeText(getContext(), "Имя изменено", Toast.LENGTH_SHORT).show();
                             changeNameDialog.cancel();
                         }
                     }
                 });
+            }
+        });
+
+        binding.adminClubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("FROM", "profile_settings_fragment");
+                args.putString("CLUB_NAME", viewModel.getUserMutableLiveData().getValue().getAdminClubName());
+                Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
+                        .navigate(R.id.action_profileSettingsFragment_to_clubInfoFragment, args);
             }
         });
 
